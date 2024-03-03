@@ -8,9 +8,16 @@
 %   _______________________________________________________________________
 %%  1. READING MASTER IMAGE
 %   Directory of the images to be analyzed goes in 'dir'.
-    dir = "D:\Experimental_Data\Cytolysin_A\Suspended_Bilayer\SRB_Leakage_SULB_ClyA_Intermediates\Ternary_Lipids\SRB_PC_SM_Chol_1_um_well_ClyA_min_15";
-%   File name of the initial image goes in " ".    
-    I = imread(dir + "\before addition.tif");
+%   dir = "D:\Experimental_Data\Cytolysin_A\Suspended_Bilayer\SRB_Leakage_SULB_ClyA_Intermediates\Ternary_Lipids\SRB_PC_SM_Chol_1_um_well_ClyA_min_15";
+%   Or use the following prompt to get the directory string:
+%   dir = input("Input the directory where you've stored all the time-point images in one experiment:")
+%   File name of the initial image goes in " ".
+%   Name all the images in the sequence as per the time point, as the code does not have any segment to extract time-related meta data. :')
+%   e.g., You can name the sequence as 0 min, 1 min, 5 min, etc.
+%   Specify the first image in the sequence below:
+%   first = input("Input filename of the first image (be careful of the case):")
+%   first = "\" + first;
+    I = imread(dir + first);
 %   _______________________________________________________________________
 %%  2. Making directories for storing results and processed images
     resdir = dir+"\Results";
@@ -223,8 +230,7 @@
 %   -----------------------------------------------------------------------
     figure('units','normalized','outerposition',[0 0 1 1])
     imagesc(1:numel(time),edges,h);
-    Color = load("D:\OneDrive - Indian Institute of Science" + ...
-        "\Codes\Developed_Scripts\CustomColorMap.mat");
+    Color = load("CustomColorMap.mat");
     ColorMap = Color.CustomColormap;
     colormap(ColorMap)
     colorbar
